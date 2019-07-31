@@ -5,14 +5,13 @@ class Server{
     constructor(){
         this.app = express();
         this.bootstrap();
-        this.app.listen(3000)
+        this.app.listen(9000)
     }
     bootstrap(){
         this.setupRoutes();
     }
     setupRoutes(){
         this.app.use(check)
-        
     }
 
 }
@@ -21,8 +20,7 @@ const check = (req, res, next) => {
         res.send(appFiles[req.url])
     }
     else{
-        console.log(req.url)
-        next('not found')
+        next(`${req.url} does not exist`)
     }
 }
 const app1 = new Server();
